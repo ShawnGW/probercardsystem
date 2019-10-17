@@ -12,5 +12,6 @@ import java.util.List;
 public interface UserDao {
     public User getUser(@Param("username") String username);
     public List<User> getAllUser();
-    public boolean removeUser(@Param("username") String username);
+    public void removeUser(@Param("username") String username);
+    public void updateNewRoleForUser(@Param("userId") Integer userId, @Param("roleIds")List<Integer> roleIds);
 }
