@@ -23,4 +23,7 @@
     <update id="updateUser">
         update vtauth.user set username = #{username},password=#{password},email=#{email},phone=#{phone},team=#{team} where id=#{id}
     </update>
+    <insert id="register">
+        insert into vtauth.user(username, password, email, phone, team) value (#{username},#{password},#{email},#{phone},#{team})
+    </insert>
 </mapper>

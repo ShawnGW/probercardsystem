@@ -24,4 +24,6 @@ public interface AuthService {
     public void removeUser(String username);
 
     public void updateUser(User userAdd);
+
+    public void register(User userNew);
 }

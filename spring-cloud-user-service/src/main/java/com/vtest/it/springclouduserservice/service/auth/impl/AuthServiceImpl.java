@@ -70,4 +70,10 @@ public class AuthServiceImpl implements AuthService {
     public void updateUser(User userAdd) {
         userDao.updateUser(userAdd);
     }
+
+    @Override
+    @Transactional(transactionManager = "dataSourceTransactionManager", isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+    public void register(User userNew) {
+        userDao.register(userNew);
+    }
 }
