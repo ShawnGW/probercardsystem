@@ -13,5 +13,6 @@ public interface UserDao {
     public User getUser(@Param("username") String username);
     public List<User> getAllUser();
     public void removeUser(@Param("username") String username);
-    public void updateNewRoleForUser(@Param("userId") Integer userId, @Param("roleIds")List<Integer> roleIds);
+
+    public void updateUser(User userAdd);
 }
