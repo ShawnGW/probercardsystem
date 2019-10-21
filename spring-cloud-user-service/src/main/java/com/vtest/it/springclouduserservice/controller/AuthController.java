@@ -14,6 +14,11 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    @PostMapping("/role/")
+    public void addNewRole(@RequestParam("roleName") String roleName, @RequestParam("description") String description) {
+        authService.addNewRole(roleName, description);
+    }
+
     @DeleteMapping("/role/{roleName}")
     public void removeRole(@PathVariable("roleName") String roleName) {
         authService.removeRole(roleName);
