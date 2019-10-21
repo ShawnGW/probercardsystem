@@ -45,7 +45,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    @Cacheable(cacheNames = {"ProberCardSystemUserCache"}, key = "#root.methodName+'&'+#roleName")
+    @Cacheable(cacheNames = {"ProberCardSystemUserCache"}, key = "#root.methodName+'&'+#roleName", unless = "#result == null")
     public Role getRole(String roleName) {
         return roleDao.getRole(roleName);
     }
@@ -62,7 +62,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    @Cacheable(cacheManager = "cacheManager", cacheNames = {"ProberCardSystemUserCache"}, key = "#root.methodName+'&'+#username")
+    @Cacheable(cacheManager = "cacheManager", cacheNames = {"ProberCardSystemUserCache"}, key = "#root.methodName+'&'+#username", unless = "#result == null")
     public User getUser(String username) {
         return userDao.getUser(username);
     }

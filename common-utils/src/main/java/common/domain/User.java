@@ -1,15 +1,9 @@
 package common.domain;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class User implements Serializable, Cloneable, UserDetails {
+public class User implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 1l;
     private Integer id;
@@ -19,16 +13,6 @@ public class User implements Serializable, Cloneable, UserDetails {
     private String phone;
     private String team;
     private List<Role> roles;
-
-    public User(Integer id, String username, String password, String email, String phone, String team, List<Role> roles) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.team = team;
-        this.roles = roles;
-    }
 
     public User() {
     }
@@ -45,32 +29,8 @@ public class User implements Serializable, Cloneable, UserDetails {
         return username;
     }
 
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    public boolean isEnabled() {
-        return true;
-    }
-
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-        for (Role role : roles) {
-            list.add(new SimpleGrantedAuthority(role.getName()));
-        }
-        return list;
     }
 
     public String getPassword() {

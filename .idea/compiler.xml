@@ -8,18 +8,20 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common-utils" />
         <module name="spring-cloud-api-gateway" />
+        <module name="spring-cloud-auth-and-operator" />
         <module name="spring-cloud-tooling-service" />
         <module name="spring-cloud-user-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="spring-cloud-api-gateway" target="1.8" />
+      <module name="commonutils" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common-utils" options="-parameters" />
       <module name="spring-cloud-api-gateway" options="-parameters" />
+      <module name="spring-cloud-auth-and-operator" options="-parameters" />
       <module name="spring-cloud-tooling-service" options="-parameters" />
       <module name="spring-cloud-user-service" options="-parameters" />
     </option>
