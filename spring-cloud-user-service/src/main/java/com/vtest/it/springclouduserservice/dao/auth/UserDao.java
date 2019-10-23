@@ -11,8 +11,11 @@ import java.util.List;
 @Repository
 public interface UserDao {
     public User getUser(@Param("username") String username);
+
     public List<User> getAllUser();
+
     public void removeUser(@Param("username") String username);
+
     public void updateUser(User userAdd);
 
     public int register(User userNew);

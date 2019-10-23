@@ -28,6 +28,7 @@ public class AuthServiceImpl implements AuthService {
     private UserDao userDao;
     @Autowired
     private UserRoleGrantDao userRoleGrantDao;
+
     @Override
     @Transactional(transactionManager = "dataSourceTransactionManager", isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
     @Caching(evict = {
