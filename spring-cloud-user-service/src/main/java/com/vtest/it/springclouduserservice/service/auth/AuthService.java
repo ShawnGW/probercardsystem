@@ -2,7 +2,6 @@ package com.vtest.it.springclouduserservice.service.auth;
 
 import common.domain.Role;
 import common.domain.User;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

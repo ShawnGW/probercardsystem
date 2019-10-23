@@ -2,6 +2,7 @@ package com.vtest.it.springclouduserservice.service.auth.impl;
 
 import com.vtest.it.springclouduserservice.dao.auth.RoleDao;
 import com.vtest.it.springclouduserservice.dao.auth.UserDao;
+import com.vtest.it.springclouduserservice.dao.auth.UserRoleGrantDao;
 import com.vtest.it.springclouduserservice.service.auth.AuthService;
 import common.domain.Role;
 import common.domain.User;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,7 +26,8 @@ public class AuthServiceImpl implements AuthService {
     private RoleDao roleDao;
     @Autowired
     private UserDao userDao;
-
+    @Autowired
+    private UserRoleGrantDao userRoleGrantDao;
     @Override
     @Transactional(transactionManager = "dataSourceTransactionManager", isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
     @Caching(evict = {
@@ -95,5 +98,8 @@ public class AuthServiceImpl implements AuthService {
     @CacheEvict(cacheManager = "cacheManager", cacheNames = {"ProberCardSystemUserCache"}, key = "'getAllUser'")
     public void register(User userNew) {
         userDao.register(userNew);
+        List<Integer> roleList = new ArrayList<>();
+        roleList.add(1);
+        userRoleGrantDao.grant(userNew.getId(), roleList);
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vtest.it.springclouduserservice.dao.auth.UserRoleGrantDao">
+    <delete id="deleteUserRoles">
+        delete  from user_roles where user_id =#{userId}
+    </delete>
+    <insert id="grant">
+        insert into user_roles (user_id, roles_id) values
+        <trim suffix="" suffixOverrides=",">
+            <foreach collection="list" item="role">
+                (#{userId},#{role}),
+            </foreach>
+        </trim>
+    </insert>
+</mapper>

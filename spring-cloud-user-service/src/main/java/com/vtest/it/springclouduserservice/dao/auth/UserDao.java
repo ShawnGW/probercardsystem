@@ -15,5 +15,5 @@ public interface UserDao {
     public void removeUser(@Param("username") String username);
     public void updateUser(User userAdd);
 
-    public void register(User userNew);
+    public int register(User userNew);
 }

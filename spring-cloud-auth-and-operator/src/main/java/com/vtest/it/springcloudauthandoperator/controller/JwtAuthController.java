@@ -19,7 +19,6 @@ public class JwtAuthController {
     // login
     @PostMapping(value = "/authentication/login")
     public String createToken(String username, String password) throws AuthenticationException {
-        System.err.println(username + " :: " + password);
         return authService.login(username, password);
     }
 
