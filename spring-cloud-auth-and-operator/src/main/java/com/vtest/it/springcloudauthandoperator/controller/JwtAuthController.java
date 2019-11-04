@@ -1,5 +1,6 @@
 package com.vtest.it.springcloudauthandoperator.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.vtest.it.springcloudauthandoperator.service.userService.impl.MyAuthService;
 import common.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;

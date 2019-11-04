@@ -32,5 +32,6 @@ public class MyAuthService {
 
     public void register(User addedUser) {
         addedUser.setPassword(new BCryptPasswordEncoder().encode(addedUser.getPassword()));
+        userInformationService.registerUser(addedUser);
     }
 }

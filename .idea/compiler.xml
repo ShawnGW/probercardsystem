@@ -9,6 +9,7 @@
         <module name="common-utils" />
         <module name="spring-cloud-api-gateway" />
         <module name="spring-cloud-auth-and-operator" />
+        <module name="spring-cloud-probercard-service" />
         <module name="spring-cloud-tooling-service" />
         <module name="spring-cloud-user-service" />
       </profile>
@@ -22,6 +23,7 @@
       <module name="common-utils" options="-parameters" />
       <module name="spring-cloud-api-gateway" options="-parameters" />
       <module name="spring-cloud-auth-and-operator" options="-parameters" />
+      <module name="spring-cloud-probercard-service" options="-parameters" />
       <module name="spring-cloud-tooling-service" options="-parameters" />
       <module name="spring-cloud-user-service" options="-parameters" />
     </option>

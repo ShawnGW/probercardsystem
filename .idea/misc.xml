@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/spring-cloud-tooling-service/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-auth-and-operator/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud-probercard-service/pom.xml" />
       </list>
     </option>
   </component>
