@@ -1,0 +1,522 @@
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10001, pstmt-20001} clearParameters. 
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10001, pstmt-20001} closed
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn 10001} rollback
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10001} setAutoCommit true
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10001} setAutoCommit false
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10001, pstmt-20002} created. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10001, pstmt-20002} Parameters : [null, null, null, null, null]
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10001, pstmt-20002} Types : [OTHER, OTHER, OTHER, OTHER, OTHER]
+ERROR http-nio-20301-exec-1 druid.sql.Statement - {conn-10001, pstmt-20002} execute error. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+java.sql.SQLIntegrityConstraintViolationException: Column 'username' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3409)
+	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:627)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3407)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3407)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3407)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy138.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:278)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
+	at com.sun.proxy.$Proxy142.register(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy143.register(Unknown Source)
+	at com.vtest.it.springclouduserservice.service.auth.impl.AuthServiceImpl.register(AuthServiceImpl.java:101)
+	at com.vtest.it.springclouduserservice.service.auth.impl.AuthServiceImpl$$FastClassBySpringCGLIB$$9b7abdf0.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:750)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:295)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.cache.interceptor.CacheInterceptor.lambda$invoke$0(CacheInterceptor.java:53)
+	at org.springframework.cache.interceptor.CacheAspectSupport.invokeOperation(CacheAspectSupport.java:365)
+	at org.springframework.cache.interceptor.CacheAspectSupport.execute(CacheAspectSupport.java:420)
+	at org.springframework.cache.interceptor.CacheAspectSupport.execute(CacheAspectSupport.java:345)
+	at org.springframework.cache.interceptor.CacheInterceptor.invoke(CacheInterceptor.java:61)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.vtest.it.springclouduserservice.service.auth.impl.AuthServiceImpl$$EnhancerBySpringCGLIB$$d977c009.register(<generated>)
+	at com.vtest.it.springclouduserservice.controller.AuthController.register(AuthController.java:61)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:893)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:798)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:94)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:114)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:104)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1589)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10001, pstmt-20002} clearParameters. 
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10001, pstmt-20002} closed
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn 10001} rollback
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10001} setAutoCommit true
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-925455585 druid.sql.Connection - {conn-10001} closed
+DEBUG Druid-ConnectionPool-Create-925455585 druid.sql.Connection - {conn-10002,procId-168} connected
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10002} pool-connect
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10002} setAutoCommit false
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10002, pstmt-20003} created. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10002, pstmt-20003} Parameters : [null, null, null, null, null]
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10002, pstmt-20003} Types : [OTHER, OTHER, OTHER, OTHER, OTHER]
+ERROR http-nio-20301-exec-5 druid.sql.Statement - {conn-10002, pstmt-20003} execute error. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+java.sql.SQLIntegrityConstraintViolationException: Column 'username' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3409)
+	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:627)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3407)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3407)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3407)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy138.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:278)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
+	at com.sun.proxy.$Proxy142.register(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy143.register(Unknown Source)
+	at com.vtest.it.springclouduserservice.service.auth.impl.AuthServiceImpl.register(AuthServiceImpl.java:101)
+	at com.vtest.it.springclouduserservice.service.auth.impl.AuthServiceImpl$$FastClassBySpringCGLIB$$9b7abdf0.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:750)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:295)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.cache.interceptor.CacheInterceptor.lambda$invoke$0(CacheInterceptor.java:53)
+	at org.springframework.cache.interceptor.CacheAspectSupport.invokeOperation(CacheAspectSupport.java:365)
+	at org.springframework.cache.interceptor.CacheAspectSupport.execute(CacheAspectSupport.java:420)
+	at org.springframework.cache.interceptor.CacheAspectSupport.execute(CacheAspectSupport.java:345)
+	at org.springframework.cache.interceptor.CacheInterceptor.invoke(CacheInterceptor.java:61)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.vtest.it.springclouduserservice.service.auth.impl.AuthServiceImpl$$EnhancerBySpringCGLIB$$d977c009.register(<generated>)
+	at com.vtest.it.springclouduserservice.controller.AuthController.register(AuthController.java:61)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:893)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:798)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:94)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:114)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:104)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1589)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10002, pstmt-20003} clearParameters. 
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10002, pstmt-20003} closed
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn 10002} rollback
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10002} setAutoCommit true
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10002} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-925455585 druid.sql.Connection - {conn-10002} closed
+DEBUG Druid-ConnectionPool-Create-1692174022 druid.sql.Connection - {conn-10001,procId-169} connected
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000} created
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000, rs-50000} query executed. 139.24015 millis. /* ping */ SELECT 1
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} open
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Header: [1]
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Result: [1]
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} closed
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000} closed
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-1692174022 druid.sql.Connection - {conn-10001} closed
+DEBUG Druid-ConnectionPool-Create-1692174022 druid.sql.Connection - {conn-10002,procId-170} connected
+DEBUG http-nio-20301-exec-3 druid.sql.Connection - {conn-10002} pool-connect
+DEBUG http-nio-20301-exec-3 druid.sql.Connection - {conn-10002} setAutoCommit false
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20001} created. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20001} Parameters : [V005, $2a$10$bxFn7TFeKZpysDi1Oh37Bu9D/FdeqhNJqK5zt5DfesF1h56ZMQtZ., ben.ji@v-test.com.cn, 18888888888, PTE]
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20001} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR]
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20001} executed. 26.044251 millis. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-3 druid.sql.ResultSet - {conn-10002, pstmt-20001, rs-50001} open
+DEBUG http-nio-20301-exec-3 druid.sql.ResultSet - {conn-10002, pstmt-20001, rs-50001} Header: [GENERATED_KEY]
+DEBUG http-nio-20301-exec-3 druid.sql.ResultSet - {conn-10002, pstmt-20001, rs-50001} Result: [7]
+DEBUG http-nio-20301-exec-3 druid.sql.ResultSet - {conn-10002, pstmt-20001, rs-50001} closed
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20001} clearParameters. 
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20002} created. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20002} Parameters : [7, 1]
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20002} Types : [INTEGER, INTEGER]
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20002} executed. 25.580059 millis. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-3 druid.sql.Statement - {conn-10002, pstmt-20002} clearParameters. 
+DEBUG http-nio-20301-exec-3 druid.sql.Connection - {conn-10002} commited
+DEBUG http-nio-20301-exec-3 druid.sql.Connection - {conn-10002} setAutoCommit true
+DEBUG http-nio-20301-exec-3 druid.sql.Connection - {conn-10002} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-1692174022 druid.sql.Connection - {conn-10002} closed
+DEBUG Druid-ConnectionPool-Create-1692174022 druid.sql.Connection - {conn-10003,procId-171} connected
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10003} pool-connect
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10003} setAutoCommit false
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20003} created. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20003} Parameters : [V005, $2a$10$.iOIXgh/rLdC/cbmHhZ.4uXvRxlKK76ojhN4uA9sUn3MYXI0MjQK6, ben.ji@v-test.com.cn, 18888888888, PTE]
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20003} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR]
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20003} executed. 26.573294 millis. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-5 druid.sql.ResultSet - {conn-10003, pstmt-20003, rs-50002} open
+DEBUG http-nio-20301-exec-5 druid.sql.ResultSet - {conn-10003, pstmt-20003, rs-50002} Header: [GENERATED_KEY]
+DEBUG http-nio-20301-exec-5 druid.sql.ResultSet - {conn-10003, pstmt-20003, rs-50002} Result: [8]
+DEBUG http-nio-20301-exec-5 druid.sql.ResultSet - {conn-10003, pstmt-20003, rs-50002} closed
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20003} clearParameters. 
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20004} created. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20004} Parameters : [8, 1]
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20004} Types : [INTEGER, INTEGER]
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20004} executed. 11.519901 millis. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-5 druid.sql.Statement - {conn-10003, pstmt-20004} clearParameters. 
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10003} commited
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10003} setAutoCommit true
+DEBUG http-nio-20301-exec-5 druid.sql.Connection - {conn-10003} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-1692174022 druid.sql.Connection - {conn-10003} closed
+DEBUG Druid-ConnectionPool-Create-1692174022 druid.sql.Connection - {conn-10004,procId-172} connected
+DEBUG http-nio-20301-exec-9 druid.sql.Connection - {conn-10004} pool-connect
+DEBUG http-nio-20301-exec-9 druid.sql.Connection - {conn-10004} setAutoCommit false
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20005} created. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20005} Parameters : [V005, $2a$10$b5vi//YCoNj57AF0EQgSqegmMES0v4ui3w/0Avn5o5ZoZBoFcjd5y, ben.ji@v-test.com.cn, 18888888888, PTE]
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20005} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR]
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20005} executed. 12.402207 millis. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-9 druid.sql.ResultSet - {conn-10004, pstmt-20005, rs-50003} open
+DEBUG http-nio-20301-exec-9 druid.sql.ResultSet - {conn-10004, pstmt-20005, rs-50003} Header: [GENERATED_KEY]
+DEBUG http-nio-20301-exec-9 druid.sql.ResultSet - {conn-10004, pstmt-20005, rs-50003} Result: [9]
+DEBUG http-nio-20301-exec-9 druid.sql.ResultSet - {conn-10004, pstmt-20005, rs-50003} closed
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20005} clearParameters. 
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20006} created. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20006} Parameters : [9, 1]
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20006} Types : [INTEGER, INTEGER]
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20006} executed. 6.247395 millis. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-9 druid.sql.Statement - {conn-10004, pstmt-20006} clearParameters. 
+DEBUG http-nio-20301-exec-9 druid.sql.Connection - {conn-10004} commited
+DEBUG http-nio-20301-exec-9 druid.sql.Connection - {conn-10004} setAutoCommit true
+DEBUG http-nio-20301-exec-9 druid.sql.Connection - {conn-10004} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-1692174022 druid.sql.Connection - {conn-10004} closed
+DEBUG Druid-ConnectionPool-Create-1692174022 druid.sql.Connection - {conn-10005,procId-173} connected
+DEBUG http-nio-20301-exec-8 druid.sql.Connection - {conn-10005} pool-connect
+DEBUG http-nio-20301-exec-8 druid.sql.Connection - {conn-10005} setAutoCommit false
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20007} created. select id, username, password, email, phone, team from vtauth.user where username =?;
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20007} Parameters : [V005]
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20007} Types : [VARCHAR]
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20007} executed. 5.639849 millis. select id, username, password, email, phone, team from vtauth.user where username =?;
+DEBUG http-nio-20301-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20007, rs-50004} open
+DEBUG http-nio-20301-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20007, rs-50004} Header: [id, username, password, email, phone, team]
+DEBUG http-nio-20301-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20007, rs-50004} Result: [9, V005, $2a$10$b5vi//YCoNj57AF0EQgSqegmMES0v4ui3w/0Avn5o5ZoZBoFcjd5y, ben.ji@v-test.com.cn, 18888888888, PTE]
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20008} created. select id, name,description from vtauth.role where id in (select distinct roles_id from vtauth.user_roles where user_id =?)
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20008} Parameters : [9]
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20008} Types : [INTEGER]
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20008} executed. 15.639179 millis. select id, name,description from vtauth.role where id in (select distinct roles_id from vtauth.user_roles where user_id =?)
+DEBUG http-nio-20301-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20008, rs-50005} open
+DEBUG http-nio-20301-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20008, rs-50005} Header: [id, name, description]
+DEBUG http-nio-20301-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20008, rs-50005} Result: [1, ROLE_NORMAL, ROLE_NORMAL]
+DEBUG http-nio-20301-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20008, rs-50005} closed
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20008} clearParameters. 
+DEBUG http-nio-20301-exec-8 druid.sql.ResultSet - {conn-10005, pstmt-20007, rs-50004} closed
+DEBUG http-nio-20301-exec-8 druid.sql.Statement - {conn-10005, pstmt-20007} clearParameters. 
+DEBUG http-nio-20301-exec-8 druid.sql.Connection - {conn-10005} commited
+DEBUG http-nio-20301-exec-8 druid.sql.Connection - {conn-10005} setAutoCommit true
+DEBUG http-nio-20301-exec-8 druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-1692174022 druid.sql.Connection - {conn-10005} closed
+DEBUG Druid-ConnectionPool-Create-1692174022 druid.sql.Connection - {conn-10006,procId-174} connected
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10006} pool-connect
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10006} setAutoCommit false
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20009} created. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20009} Parameters : [V159, $2a$10$5/ZI1PDGNlFcu6u2/AAIUOBWUiaMbr7eACyiePghYEHdzlFuCwfh2, gongqian.yang@v-test.com.cn, 15555555555, IT]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20009} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20009} executed. 6.326325 millis. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10006, pstmt-20009, rs-50006} open
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10006, pstmt-20009, rs-50006} Header: [GENERATED_KEY]
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10006, pstmt-20009, rs-50006} Result: [10]
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10006, pstmt-20009, rs-50006} closed
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20009} clearParameters. 
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20010} created. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20010} Parameters : [10, 1]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20010} Types : [INTEGER, INTEGER]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20010} executed. 18.38508 millis. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10006, pstmt-20010} clearParameters. 
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10006} commited
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10006} setAutoCommit true
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10006} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-1692174022 druid.sql.Connection - {conn-10006} closed
+DEBUG Druid-ConnectionPool-Create-1692174022 druid.sql.Connection - {conn-10007,procId-175} connected
+DEBUG http-nio-20301-exec-4 druid.sql.Connection - {conn-10007} pool-connect
+DEBUG http-nio-20301-exec-4 druid.sql.Connection - {conn-10007} setAutoCommit false
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20011} created. select id, username, password, email, phone, team from vtauth.user where username =?;
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20011} Parameters : [V159]
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20011} Types : [VARCHAR]
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20011} executed. 5.119766 millis. select id, username, password, email, phone, team from vtauth.user where username =?;
+DEBUG http-nio-20301-exec-4 druid.sql.ResultSet - {conn-10007, pstmt-20011, rs-50007} open
+DEBUG http-nio-20301-exec-4 druid.sql.ResultSet - {conn-10007, pstmt-20011, rs-50007} Header: [id, username, password, email, phone, team]
+DEBUG http-nio-20301-exec-4 druid.sql.ResultSet - {conn-10007, pstmt-20011, rs-50007} Result: [10, V159, $2a$10$5/ZI1PDGNlFcu6u2/AAIUOBWUiaMbr7eACyiePghYEHdzlFuCwfh2, gongqian.yang@v-test.com.cn, 15555555555, IT]
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20012} created. select id, name,description from vtauth.role where id in (select distinct roles_id from vtauth.user_roles where user_id =?)
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20012} Parameters : [10]
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20012} Types : [INTEGER]
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20012} executed. 3.929421 millis. select id, name,description from vtauth.role where id in (select distinct roles_id from vtauth.user_roles where user_id =?)
+DEBUG http-nio-20301-exec-4 druid.sql.ResultSet - {conn-10007, pstmt-20012, rs-50008} open
+DEBUG http-nio-20301-exec-4 druid.sql.ResultSet - {conn-10007, pstmt-20012, rs-50008} Header: [id, name, description]
+DEBUG http-nio-20301-exec-4 druid.sql.ResultSet - {conn-10007, pstmt-20012, rs-50008} Result: [1, ROLE_NORMAL, ROLE_NORMAL]
+DEBUG http-nio-20301-exec-4 druid.sql.ResultSet - {conn-10007, pstmt-20012, rs-50008} closed
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20012} clearParameters. 
+DEBUG http-nio-20301-exec-4 druid.sql.ResultSet - {conn-10007, pstmt-20011, rs-50007} closed
+DEBUG http-nio-20301-exec-4 druid.sql.Statement - {conn-10007, pstmt-20011} clearParameters. 
+DEBUG http-nio-20301-exec-4 druid.sql.Connection - {conn-10007} commited
+DEBUG http-nio-20301-exec-4 druid.sql.Connection - {conn-10007} setAutoCommit true
+DEBUG http-nio-20301-exec-4 druid.sql.Connection - {conn-10007} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-1692174022 druid.sql.Connection - {conn-10007} closed
+DEBUG Druid-ConnectionPool-Create-120635040 druid.sql.Connection - {conn-10001,procId-176} connected
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000} created
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000, rs-50000} query executed. 119.723601 millis. /* ping */ SELECT 1
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} open
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Header: [1]
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Result: [1]
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} closed
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000} closed
+DEBUG RMI TCP Connection(9)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-120635040 druid.sql.Connection - {conn-10001} closed
+DEBUG Druid-ConnectionPool-Create-120635040 druid.sql.Connection - {conn-10002,procId-179} connected
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10002} pool-connect
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10002} setAutoCommit false
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20001} created. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20001} Parameters : [1100, $2a$10$wqKWjnv0JJoHHLkoCDfn0udPAg6Gc.E.Qup2vsqQ.vcr.cbTZNo4O, leo.qiu@v-test.com.cn, 15555555555, PTE]
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20001} Types : [VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR]
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20001} executed. 25.189676 millis. insert into vtauth.user(username, password, email, phone, team) value (?,?,?,?,?)
+DEBUG http-nio-20301-exec-1 druid.sql.ResultSet - {conn-10002, pstmt-20001, rs-50001} open
+DEBUG http-nio-20301-exec-1 druid.sql.ResultSet - {conn-10002, pstmt-20001, rs-50001} Header: [GENERATED_KEY]
+DEBUG http-nio-20301-exec-1 druid.sql.ResultSet - {conn-10002, pstmt-20001, rs-50001} Result: [11]
+DEBUG http-nio-20301-exec-1 druid.sql.ResultSet - {conn-10002, pstmt-20001, rs-50001} closed
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20001} clearParameters. 
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20002} created. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20002} Parameters : [11, 1]
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20002} Types : [INTEGER, INTEGER]
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20002} executed. 16.43061 millis. insert into user_roles (user_id, roles_id) values
+         (?,?)
+DEBUG http-nio-20301-exec-1 druid.sql.Statement - {conn-10002, pstmt-20002} clearParameters. 
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10002} commited
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10002} setAutoCommit true
+DEBUG http-nio-20301-exec-1 druid.sql.Connection - {conn-10002} pool-recycle
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10002} pool-connect
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10002} setAutoCommit false
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20003} created. select id, username, password, email, phone, team from vtauth.user where username =?;
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20003} Parameters : [1100]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20003} Types : [VARCHAR]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20003} executed. 13.217104 millis. select id, username, password, email, phone, team from vtauth.user where username =?;
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10002, pstmt-20003, rs-50002} open
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10002, pstmt-20003, rs-50002} Header: [id, username, password, email, phone, team]
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10002, pstmt-20003, rs-50002} Result: [11, 1100, $2a$10$wqKWjnv0JJoHHLkoCDfn0udPAg6Gc.E.Qup2vsqQ.vcr.cbTZNo4O, leo.qiu@v-test.com.cn, 15555555555, PTE]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20004} created. select id, name,description from vtauth.role where id in (select distinct roles_id from vtauth.user_roles where user_id =?)
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20004} Parameters : [11]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20004} Types : [INTEGER]
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20004} executed. 13.689401 millis. select id, name,description from vtauth.role where id in (select distinct roles_id from vtauth.user_roles where user_id =?)
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10002, pstmt-20004, rs-50003} open
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10002, pstmt-20004, rs-50003} Header: [id, name, description]
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10002, pstmt-20004, rs-50003} Result: [1, ROLE_NORMAL, ROLE_NORMAL]
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10002, pstmt-20004, rs-50003} closed
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20004} clearParameters. 
+DEBUG http-nio-20301-exec-2 druid.sql.ResultSet - {conn-10002, pstmt-20003, rs-50002} closed
+DEBUG http-nio-20301-exec-2 druid.sql.Statement - {conn-10002, pstmt-20003} clearParameters. 
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10002} commited
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10002} setAutoCommit true
+DEBUG http-nio-20301-exec-2 druid.sql.Connection - {conn-10002} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-120635040 druid.sql.Connection - {conn-10002} closed
+DEBUG Druid-ConnectionPool-Create-1712003741 druid.sql.Connection - {conn-10001,procId-184} connected
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000} created
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000, rs-50000} query executed. 152.614686 millis. /* ping */ SELECT 1
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} open
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Header: [1]
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Result: [1]
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} closed
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Statement - {conn-10001, stmt-20000} closed
+DEBUG RMI TCP Connection(4)-127.0.0.1 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-1712003741 druid.sql.Connection - {conn-10001} closed
+DEBUG Druid-ConnectionPool-Create-575506130 druid.sql.Connection - {conn-10001,procId-5138659} connected
+DEBUG http-nio-20303-exec-5 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG http-nio-20303-exec-5 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG http-nio-20303-exec-5 druid.sql.Connection - {conn-10001} pool-connect
+DEBUG http-nio-20303-exec-5 druid.sql.Statement - {conn-10001, stmt-20000} created
+DEBUG http-nio-20303-exec-5 druid.sql.Statement - {conn-10001, stmt-20000, rs-50000} query executed. 152.475599 millis. /* ping */ SELECT 1
+DEBUG http-nio-20303-exec-5 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} open
+DEBUG http-nio-20303-exec-5 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Header: [1]
+DEBUG http-nio-20303-exec-5 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Result: [1]
+DEBUG http-nio-20303-exec-5 druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} closed
+DEBUG http-nio-20303-exec-5 druid.sql.Statement - {conn-10001, stmt-20000} closed
+DEBUG http-nio-20303-exec-5 druid.sql.Connection - {conn-10001} pool-recycle
+DEBUG Druid-ConnectionPool-Destroy-575506130 druid.sql.Connection - {conn-10001} closed
