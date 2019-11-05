@@ -32,7 +32,6 @@ public class DataSourceConfiguration {
         }
         return dataSource;
     }
-
     @Primary
     @Bean("sqlSessionFactory")
     public SqlSessionFactory getSqlSessionFactory(@Autowired @Qualifier("DataSource") DataSource dataSource) throws Exception {
@@ -42,7 +41,6 @@ public class DataSourceConfiguration {
         sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
-
     @Primary
     @Bean("sqlSessionTemplate")
     public SqlSessionTemplate getSqlSessionTemplate(@Autowired @Qualifier("sqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
