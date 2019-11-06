@@ -1,11 +1,10 @@
 package com.vtest.it.springcloudprobercardservice.service.probercard.impl;
 
-import com.netflix.discovery.converters.Auto;
+
 import com.vtest.it.springcloudprobercardservice.dao.ProberCardInformationDao;
 import com.vtest.it.springcloudprobercardservice.domain.*;
 import com.vtest.it.springcloudprobercardservice.service.probercard.ProberCardInformation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -31,106 +30,118 @@ public class ProberCardInformationImpl implements ProberCardInformation {
     @Override
     @Cacheable(value = "ProberCardCache", key = "#methodName+'&'+#cardId")
     public ProberCardEntityBean getCard(String cardId) {
-        return null;
+        return informationDao.getCard(cardId);
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName+'&'+#proberCardId")
     public String getProberCardStatus(String proberCardId) {
-        return null;
+        return informationDao.getProberCardStatus(proberCardId);
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName+'&'+#proberCardId")
     public ReleaseProberCardBean getReleaseCardInfo(String proberCardId) {
-        return null;
+        return informationDao.getReleaseCardInfo(proberCardId);
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<ProberCardStatusBean> getAllProberCardStatus() {
-        return null;
+        return informationDao.getAllProberCardStatus();
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName+'&'+#proberCardId")
     public boolean getProberCardReleaseFlag(String proberCardId) {
-        return false;
+        return informationDao.getProberCardReleaseFlag(proberCardId);
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<IqcRecordBean> getAllIQCRecord() {
-        return null;
+        return informationDao.getAllIQCRecord();
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<ProberCardMaintainBean> getAllMaintainRecord() {
-        return null;
+        return informationDao.getAllMaintainRecord();
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName+'&'+#proberCardId")
     public Integer getInfoRebuildCount(String proberCardId) {
-        return null;
+        return informationDao.getInfoRebuildCount(proberCardId);
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<ProberCardTDBean> getTd() {
-        return null;
+        return informationDao.getTd();
     }
 
     @Override
     public ArrayList<OutProberCardBean> getOutProberCard(String[] proberCardIdArrays) {
-        return null;
+        return informationDao.getOutProberCard(proberCardIdArrays);
     }
 
     @Override
     public ArrayList<BackProberCardBean> getBackProberCard(String[] proberCardIdArrays) {
-        return null;
+        return informationDao.getBackProberCard(proberCardIdArrays);
     }
 
     @Override
     public ArrayList<ProberCardEntityBean> getInfoProberCard(String[] proberCardIdArrays) {
-        return null;
+        return informationDao.getInfoProberCard(proberCardIdArrays);
     }
 
     @Override
     public ArrayList<IqcRecordBean> getIQCProberCard(String[] proberCardIdArrays) {
-        return null;
+        return informationDao.getIQCProberCard(proberCardIdArrays);
     }
 
     @Override
     public ArrayList<ProberCardMaintainBean> getMaintainProberCard(String[] proberCardIdArrays) {
-        return null;
+        return informationDao.getMaintainProberCard(proberCardIdArrays);
     }
 
     @Override
     public ArrayList<ReleaseProberCardBean> getReleaseProberCard(String[] proberCardIdArrays) {
-        return null;
+        return informationDao.getReleaseProberCard(proberCardIdArrays);
     }
 
     @Override
     public ArrayList<ProberCardEntityBean> getProberCardId(String[] custNameArrays) {
-        return null;
+        return informationDao.getProberCardId(custNameArrays);
     }
 
     @Override
     public ArrayList<ProberCardExtensionBean> getEXRecord(String[] proberCardIdArrays) {
-        return null;
+        return informationDao.getEXRecord(proberCardIdArrays);
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<String> getProberCardEX() {
-        return null;
+        return informationDao.getProberCardEX();
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName+'&'+#proberCardId")
     public ArrayList<ProberCardExtensionBean> getEXInfoSingle(String proberCardId) {
-        return null;
+        return informationDao.getEXInfoSingle(proberCardId);
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<IqcRecordBean> getAllIQCRecordByMinTime() {
-        return null;
+        return informationDao.getAllIQCRecordByMinTime();
     }
 
     @Override
+    @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<IqcRecordBean> getAllIQCRecordByMaxTime() {
-        return null;
+        return informationDao.getAllIQCRecordByMaxTime();
     }
 }

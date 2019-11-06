@@ -42,7 +42,5 @@ public interface ProberCardOperatorDao {
 
     public boolean updateIQCItem(@Param("proberCardId") String proberCardId, @Param("pinMinlen") double pinMinlen, @Param("pinMaxdiam") double pinMaxdiam, @Param("pinLevel") double pinLevel);
 
-    public PMUserBean checkPMPassword(@Param("username") String username);
-
     public boolean cleanPM(@Param("cardid") String cardid, @Param("ownerid") String ownerid);
 }
