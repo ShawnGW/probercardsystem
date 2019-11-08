@@ -76,6 +76,7 @@ public class ProberCardInformationImpl implements ProberCardInformation {
     }
 
     @Override
+    @Transactional(transactionManager = "transactionManager", propagation = Propagation.REQUIRED, isolation = Isolation.READ_UNCOMMITTED)
     @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<ProberCardTDBean> getTd() {
         return informationDao.getTd();
@@ -122,12 +123,14 @@ public class ProberCardInformationImpl implements ProberCardInformation {
     }
 
     @Override
+    @Transactional(transactionManager = "transactionManager", propagation = Propagation.REQUIRED, isolation = Isolation.READ_UNCOMMITTED)
     @Cacheable(value = "ProberCardCache",key = "#root.methodName")
     public ArrayList<String> getProberCardEX() {
         return informationDao.getProberCardEX();
     }
 
     @Override
+    @Transactional(transactionManager = "transactionManager", propagation = Propagation.REQUIRED, isolation = Isolation.READ_UNCOMMITTED)
     @Cacheable(value = "ProberCardCache",key = "#root.methodName+'&'+#proberCardId")
     public ArrayList<ProberCardExtensionBean> getEXInfoSingle(String proberCardId) {
         return informationDao.getEXInfoSingle(proberCardId);

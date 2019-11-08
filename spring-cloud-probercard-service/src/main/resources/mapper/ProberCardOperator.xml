@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.vtest.it.springcloudprobercardservice.dao.ProberCardOperatorDao">
-
+    <insert id="addNewProberCardInfo" parameterType="com.vtest.it.springcloudprobercardservice.domain.ProberCardEntityBean">
+      insert into VTProberCard.Probercard_Info(prober_card_id, cust_name, cust_no, receipt_time, vendor_name, vendor_no, belong_dept, use_equipment, dut_count, pin_count, cab_position, card_source, pm_td, card_type, new_old, clean_type, pinlen_spec, pindiam_spec, pinlevel_spec, pindepth_spec, td_total, card_model, release_flag,glass_mask,mylar_mask,note,rebuild_count,creator,confirmer)
+      value (#{proberCardId},#{custName},#{custNo},#{receiptTime},#{vendorName},#{vendorNo},#{belongDept},#{useEquipment},#{dutCount},#{pinCount},#{cabPosition},#{cardSource},#{pmTd},#{cardType},#{newOld},#{cleanType},#{pinlenSpec},#{pindiamSpec},#{pinlevelSpec},#{pindepthSpec},#{tdTotal},#{cardModel},#{releaseFlag},#{glassMask},#{mylarMask},#{note},#{rebuildCount},#{creator},#{confirmer});
+    </insert>
+    <delete id="deleteProberCardInfo" parameterType="string">
+        delete from VTProberCard.Probercard_Info where prober_card_id=#{cardId};
+    </delete>
+    <insert id="proberCardCreateState">
+        insert into VTProberCard.ProberCard_Current_State(prober_card_id,last_process,current_process,update_operator) value (#{proberCardId},#{lastProcess},#{currentProcess},#{op});
+    </insert>
+    <insert id="addNewIqcRecord" parameterType="com.vtest.it.springcloudprobercardservice.domain.IqcRecordBean">
+        insert into ProberCard_IQC_Record(prober_card_id, pin_maxlen, pin_minlen, pin_maxdiam, pin_mindiam, pin_level,pin_depth,update_operator,last_process,next_station,note) value
+        (#{proberCardId},#{pinMaxlen},#{pinMinlen},#{pinMaxdiam},#{pinMindiam},#{pinLevel},#{pinDepth},#{updateOperator},#{lastProcess},#{nextStation},#{note});
+    </insert>
+    <update id="updateProberCardState">
+        update VTProberCard.ProberCard_Current_State set last_process =#{odlStatus} ,current_process=#{NewStatus},update_operator=#{operator} where prober_card_id=#{proberCardId} and current_process=#{odlStatus};
+    </update>
+    <insert id="outProberCard" parameterType="com.vtest.it.springcloudprobercardservice.domain.OutProberCardBean">
+        insert into ProberCard_Out_Record(prober_card_id,outuse_equipment,out_using,out_operator,next_station,note) value
+         (#{proberCardId},#{outUseEquipment},#{outUsing},#{outOperator},#{nextStation},#{note});
+    </insert>
+    <insert id="addNewBackRecord" parameterType="com.vtest.it.springcloudprobercardservice.domain.BackProberCardBean">
+        insert into ProberCard_Back_Record(prober_card_id,backuse_equipment,back_status,back_operator,create_operator,issue_flag,issue_desc,next_station,note)
+        value (#{proberCardId},#{backuseEquipment},#{backStatus},#{backOperator},#{createOperator},#{issueFlag},#{issueDesc},#{nextStation},#{note});
+    </insert>
+    <insert id="addnewReleaseProberCard" parameterType="com.vtest.it.springcloudprobercardservice.domain.ReleaseProberCardBean">
+        insert into ProberCard_Release_Record(prober_card_id, pte_operator, card_yield, card_operator, pin_marks,
+        release_flag, update_operator, note)
+        value
+        (#{proberCardId},#{pteOperator},#{cardYield},#{cardOperator},#{pinMarks},#{releaseFlag},#{updateOperator},#{note})
+        on duplicate key update
+        <trim suffix="" suffixOverrides=",">
+            <if test="null !=pteOperator">
+                pte_operator=#{pteOperator},
+            </if>
+            <if test="null !=cardYield">
+                card_yield=#{cardYield},
+            </if>
+            <if test="null!=cardOperator">
+                card_operator=#{cardOperator},
+            </if>
+            <if test="null!=pinMarks">
+                pin_marks=#{pinMarks},
+            </if>
+            <if test="null!=releaseFlag">
+                release_flag=#{releaseFlag},
+            </if>
+            <if test="null!=updateOperator">
+                update_operator=#{updateOperator},
+            </if>
+            <if test="null!=note">
+                note=#{note},
+            </if>
+        </trim>
+    </insert>
+    <insert id="addNewMaintainRecord" parameterType="com.vtest.it.springcloudprobercardservice.domain.ProberCardMaintainBean">
+        insert into ProberCard_Maintain_Record(prober_card_id,before_pinlen,after_pinlen,before_pindiam,after_pindiam,before_pinlevel,after_pinlevel,clean_flag,grinding_flag,corrosion_flag,adjustment_flag,bake_flag,handgrind_flag,checksolder_flag,maintsolder_flag,checkparts_flag,changeparts_flag,jumper_flag,update_operator,next_station,note,rebuild_count)
+        value (#{proberCardId},#{beforePinlen},#{afterPinlen},#{beforePindiam},#{afterPindiam},#{beforePinlevel},#{afterPinlevel},#{cleanFlag},#{grindingFlag},#{corrosionFlag},#{adjustmentFlag},#{bakeFlag},#{handgrindFlag},#{checksolderFlag},#{maintsolderFlag},#{checkpartsFlag},#{changepartsFlag},#{jumperFlag},#{updateOperator},#{nextStation},#{note},#{rebuildCount});
+    </insert>
+    <update id="updateProberCard">
+        update VTProberCard.Probercard_Info set cust_name =#{custName} ,cust_no=#{custNo},receipt_time=#{receiptTime},vendor_name =#{vendorName} ,vendor_no=#{vendorNo},belong_dept=#{belongDept},use_equipment =#{useEquipment} ,dut_count=#{dutCount},pin_count=#{pinCount},cab_position =#{cabPosition} ,card_source=#{cardSource},pm_td=#{pmTd},
+        card_type =#{cardType} ,new_old=#{newOld},clean_type=#{cleanType},pinlen_spec =#{pinlenSpec} ,pindiam_spec=#{pindiamSpec},pinlevel_spec=#{pinlevelSpec},pindepth_spec =#{pindepthSpec} ,td_total=#{tdTotal},card_model=#{cardModel},release_flag =#{releaseFlag} ,glass_mask=#{glassMask},mylar_mask=#{mylarMask},note=#{note},rebuild_count=#{rebuildCount},creator=#{creator},confirmer=#{confirmer} where prober_card_id=#{proberCardId};
+    </update>
+    <update id="updateProberCardReleaseFlag">
+        update VTProberCard.ProberCard_Release_Record  set  release_flag=#{ releaseFlag }  where  prober_card_id=#{proberCardId};
+    </update>
+    <update id="updateProberCardInfoReleaseFlag">
+        update VTProberCard.Probercard_Info set  release_flag=#{ releaseFlag }  where  prober_card_id=#{proberCardId};
+    </update>
+    <update id="updateSingleState">
+        update VTProberCard.ProberCard_Current_State set  current_process=#{ currentProcess }  where  prober_card_id=#{proberCardId};
+    </update>
+    <update id="updateProberCardItem">
+        update VTProberCard.Probercard_Info set  pinlen_spec=#{ pinlenSpec },pindiam_spec=#{pindiamSpec},pinlevel_spec=#{pinlevelSpec},rebuild_count=#{rebuildCount}  where  prober_card_id=#{proberCardId};
+    </update>
+    <update id="updateMaintainItem">
+        update VTProberCard.ProberCard_Maintain_Record set  after_pinlen=#{ afterPinlen },after_pindiam=#{afterPindiam},after_pinlevel=#{afterPinlevel}  where  prober_card_id=#{proberCardId};
+    </update>
+    <update id="updateIQCItem">
+        update VTProberCard.ProberCard_IQC_Record set  pin_minlen=#{ pinMinlen },pin_maxdiam=#{pinMaxdiam},pin_level=#{pinLevel}  where  prober_card_id=#{proberCardId};
+    </update>
+    <insert id="addProberCardEX" parameterType="com.vtest.it.springcloudprobercardservice.domain.ProberCardExtensionBean">
+      insert into VTProberCard.Probercard_Extension_Info(prober_card_id, use_equipment, dut_count, pin_count, curr_td, td_total, card_type, pin_len, pin_diam, pin_level, exten_count, last_process, marks_flag, card_yield, exten_flag, note, current_process, creator, load_time)
+      value (#{proberCardId},#{useEquipment},#{dutCount},#{pinCount},#{currTd},#{tdTotal},#{cardType},#{pinLen},#{pinDiam},#{pinLevel},#{extenCount},#{lastProcess},#{marksFlag},#{cardYield},#{extenFlag},#{note},#{currentProcess},#{creator},#{loadTime});
+    </insert>
+    <update id="cleanPM" statementType="CALLABLE">
+        {call pro_pmfunction(#{cardid,mode=IN,jdbcType=VARCHAR},#{ownerid,mode=IN,jdbcType=VARCHAR})}
+    </update>
 </mapper>

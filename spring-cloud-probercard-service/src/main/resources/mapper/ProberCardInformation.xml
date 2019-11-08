@@ -1,5 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.vtest.it.springcloudprobercardservice.dao.ProberCardInformationDao">
+    <select id="getAllProberCardStatus" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardStatusBean">
+        SELECT prober_card_id,last_process,current_process,update_operator FROM VTProberCard.ProberCard_Current_State ;
+    </select>
+    <select id="getAllList" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardEntityBean">
+        select prober_card_id, cust_name, cust_no, receipt_time, vendor_name, vendor_no, belong_dept, use_equipment, dut_count, pin_count, cab_position, card_source, pm_td, card_type, new_old, clean_type, pinlen_spec, pindiam_spec, pinlevel_spec, pindepth_spec, td_total, card_model, release_flag,glass_mask,mylar_mask,note,rebuild_count,creator,confirmer from VTProberCard.Probercard_Info
+    </select>
+    <select id="getCard" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardEntityBean">
+        select * from  VTProberCard.Probercard_Info where  prober_card_id=#{cardId};
+    </select>
+    <select id="getProberCardStatus" resultType="string">
+        select current_process from ProberCard_Current_State where  prober_card_id=#{proberCardId};
+    </select>
+    <select id="getReleaseCardInfo" parameterType="string" resultType="com.vtest.it.springcloudprobercardservice.domain.ReleaseProberCardBean">
+        select prober_card_id, pte_operator, card_yield, card_operator, pin_marks, release_flag, update_operator, note from ProberCard_Release_Record where prober_card_id=#{proberCardId}
+    </select>
+    <select id="getProberCardReleaseFlag" resultType="boolean">
+        select release_flag from VTProberCard.ProberCard_Release_Record where  prober_card_id=#{proberCardId};
+    </select>
+    <select id="getAllIQCRecord" resultType="com.vtest.it.springcloudprobercardservice.domain.IqcRecordBean">
+        SELECT prober_card_id,pin_maxlen,pin_minlen,pin_maxdiam,pin_mindiam,pin_level,pin_depth,update_operator,note,next_station,last_process FROM VTProberCard.ProberCard_IQC_Record ;
+    </select>
+    <select id="getAllMaintainRecord" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardMaintainBean">
+        SELECT prober_card_id,before_pinlen,after_pinlen,before_pindiam,after_pindiam,before_pinlevel,after_pinlevel,clean_flag,grinding_flag,corrosion_flag,adjustment_flag,adjustment_flag,bake_flag,handgrind_flag,checksolder_flag,maintsolder_flag,checkparts_flag,changeparts_flag,jumper_flag,update_operator,note,next_station,rebuild_count FROM VTProberCard.ProberCard_Maintain_Record ;
+    </select>
+    <select id="getInfoRebuildCount" resultType="integer">
+        SELECT rebuild_Count FROM  VTProberCard.Probercard_Info where prober_card_id=#{proberCardId}
+    </select>
+    <select id="getTd" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardTDBean" statementType="CALLABLE">
+        {call pro_GetCardTouchInfo()}
+    </select>
+    <select id="getOutProberCard" resultType="com.vtest.it.springcloudprobercardservice.domain.OutProberCardBean">
+        select prober_card_id,outuse_equipment,out_using,out_operator,note,load_time,next_station FROM
+        VTProberCard.ProberCard_Out_Record where prober_card_id in
+        (
+        <trim suffix="" suffixOverrides=",">
+            <foreach item="prober_card_id" index="index" collection="proberCardIdArrays">
+                #{prober_card_id},
+            </foreach>
+        </trim>
+        ) order by prober_card_id,load_time;
+    </select>
+    <select id="getBackProberCard" resultType="com.vtest.it.springcloudprobercardservice.domain.BackProberCardBean">
+        select  prober_card_id,backuse_equipment,back_status,back_operator,issue_flag,issue_desc,note,load_time,next_station FROM VTProberCard.ProberCard_Back_Record where prober_card_id in
+        (
+        <trim suffix="" suffixOverrides=",">
+            <foreach item="prober_card_id" index="index" collection="proberCardIdArrays">
+                #{prober_card_id},
+            </foreach>
+        </trim>
+        ) order by prober_card_id,load_time;
+    </select>
+    <select id="getInfoProberCard" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardEntityBean">
+        select  prober_card_id, cust_name, cust_no, receipt_time, vendor_name, vendor_no, belong_dept, use_equipment, dut_count, pin_count, cab_position, card_source, pm_td, card_type, new_old, clean_type, pinlen_spec, pindiam_spec, pinlevel_spec, pindepth_spec, td_total, card_model, release_flag,glass_mask,mylar_mask,note,rebuild_count,creator,confirmer,load_time FROM VTProberCard.Probercard_Info_Hist where prober_card_id in
+        (
+        <trim suffix="" suffixOverrides=",">
+            <foreach item="prober_card_id" index="index" collection="proberCardIdArrays">
+                #{prober_card_id},
+            </foreach>
+        </trim>
+        ) order by prober_card_id,load_time;
+    </select>
+    <select id="getIQCProberCard" resultType="com.vtest.it.springcloudprobercardservice.domain.IqcRecordBean">
+        select  prober_card_id,pin_maxlen,pin_minlen,pin_maxdiam,pin_mindiam,pin_level,pin_depth,update_operator,note,last_process,next_station,load_time FROM VTProberCard.ProberCard_IQC_Record where prober_card_id in
+        (
+        <trim suffix="" suffixOverrides=",">
+            <foreach item="prober_card_id" index="index" collection="proberCardIdArrays">
+                #{prober_card_id},
+            </foreach>
+        </trim>
+        ) order by prober_card_id,load_time;
+    </select>
+    <select id="getMaintainProberCard" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardMaintainBean">
+        select prober_card_id,before_pinlen,after_pinlen,before_pindiam,after_pindiam,before_pinlevel,after_pinlevel,clean_flag,grinding_flag,corrosion_flag,adjustment_flag,adjustment_flag,bake_flag,handgrind_flag,checksolder_flag,maintsolder_flag,checkparts_flag,changeparts_flag,jumper_flag,update_operator,note,next_station,rebuild_count,load_time FROM VTProberCard.ProberCard_Maintain_Record where prober_card_id in
+        (
+        <trim suffix="" suffixOverrides=",">
+            <foreach item="prober_card_id" index="index" collection="proberCardIdArrays">
+                #{prober_card_id},
+            </foreach>
+        </trim>
+        ) order by prober_card_id,load_time;
+    </select>
+    <select id="getReleaseProberCard" resultType="com.vtest.it.springcloudprobercardservice.domain.ReleaseProberCardBean">
+        select  prober_card_id,pte_operator,card_yield,card_operator,pin_marks,release_flag,update_operator,note,load_time FROM VTProberCard.ProberCard_Release_Record where prober_card_id in
+        (
+        <trim suffix="" suffixOverrides=",">
+            <foreach item="prober_card_id" index="index" collection="proberCardIdArrays">
+                #{prober_card_id},
+            </foreach>
+        </trim>
+        ) order by prober_card_id,load_time;
+    </select>
+    <select id="getEXRecord" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardExtensionBean">
+        select  prober_card_id, use_equipment, dut_count, pin_count, curr_td, td_total, card_type, pin_len, pin_diam, pin_level, exten_count, last_process, marks_flag, card_yield, exten_flag, note, current_process, creator, load_time FROM VTProberCard.Probercard_Extension_Info where prober_card_id in
+        (
+        <trim suffix="" suffixOverrides=",">
+            <foreach item="prober_card_id" index="index" collection="proberCardIdArrays">
+                #{prober_card_id},
+            </foreach>
+        </trim>
+        ) order by prober_card_id,load_time;
+    </select>
+    <select id="getProberCardId" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardEntityBean">
+        select  prober_card_id FROM VTProberCard.Probercard_Info  where cust_name in
+        (
+        <trim suffix="" suffixOverrides=",">
+            <foreach item="cust_name" index="index" collection="custNameArrays">
+                #{cust_name},
+            </foreach>
+        </trim>
+        ) order by prober_card_id,load_time;
+    </select>
+    <select id="getProberCardEX" statementType="CALLABLE" resultType="String">
+         {call pro_GetCardExten()}
+    </select>
+    <select id="getEXInfoSingle" statementType="CALLABLE" resultType="com.vtest.it.springcloudprobercardservice.domain.ProberCardExtensionBean">
+         {call pro_GetCardExtenSingle(#{proberCardId,mode=IN,jdbcType=VARCHAR})}
+    </select>
+    <select id="getAllIQCRecordByMaxTime" resultType="com.vtest.it.springcloudprobercardservice.domain.IqcRecordBean">
+        SELECT prober_card_id,any_value(pin_maxlen) as pin_maxlen,any_value(pin_minlen) as pin_minlen ,any_value(pin_maxdiam) as pin_maxdiam,any_value(pin_mindiam) as pin_mindiam,any_value(pin_level) as pin_level,any_value(pin_level) as pin_level,any_value(pin_depth) as pin_depth ,any_value(update_operator) as update_operator,any_value(note) as note,any_value(next_station) as next_station,any_value(last_process) as last_process,max(load_time) FROM VTProberCard.ProberCard_IQC_Record group by prober_card_id;
+    </select>
 
+    <select id="getAllIQCRecordByMinTime" resultType="com.vtest.it.springcloudprobercardservice.domain.IqcRecordBean">
+        SELECT prober_card_id,any_value(pin_maxlen) as pin_maxlen,any_value(pin_minlen) as pin_minlen ,any_value(pin_maxdiam) as pin_maxdiam,any_value(pin_mindiam) as pin_mindiam,any_value(pin_level) as pin_level,any_value(pin_level) as pin_level,any_value(pin_depth) as pin_depth ,any_value(update_operator) as update_operator,any_value(note) as note,any_value(next_station) as next_station,any_value(last_process) as last_process,min(load_time) FROM VTProberCard.ProberCard_IQC_Record group by prober_card_id;
+    </select>
 </mapper>

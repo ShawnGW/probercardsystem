@@ -1,5 +1,6 @@
 package com.vtest.it.springcloudprobercardservice.service.probercard.impl;
 
+import com.vtest.it.springcloudprobercardservice.dao.ProberCardOperatorDao;
 import com.vtest.it.springcloudprobercardservice.domain.*;
 import com.vtest.it.springcloudprobercardservice.service.probercard.ProberCardOperator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(value = "transactionManager",propagation = Propagation.REQUIRED,isolation = Isolation.SERIALIZABLE)
 public class ProberCardOperatorImpl implements ProberCardOperator {
     @Autowired
-    private ProberCardOperator proberCardOperator;
+    private ProberCardOperatorDao proberCardOperator;
 
     @Override
     @Caching(evict = {
