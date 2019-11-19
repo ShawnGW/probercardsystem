@@ -24,6 +24,7 @@ public class ProberCardOperatorImpl implements ProberCardOperator {
     })
     public void addProberCardInfo(ProberCardEntityBean bean) {
             proberCardOperator.addProberCardInfo(bean);
+            proberCardOperator.proberCardCreateState(bean.getProberCardId(), "New_Prod", "IQC", "V149");
     }
 
     @Override
@@ -84,8 +85,8 @@ public class ProberCardOperatorImpl implements ProberCardOperator {
             @CacheEvict(value = "ProberCardCache",key = "'getAllList'"),
             @CacheEvict(value = "ProberCardCache",key = "'getAllProberCardStatus'")
     })
-    public void deleteProberCardInfo(String proberCardId) {
-        proberCardOperator.deleteProberCardInfo(proberCardId);
+    public void deleteProberCardInfo(String cardId) {
+        proberCardOperator.deleteProberCardInfo(cardId);
     }
 
     @Override
@@ -95,7 +96,6 @@ public class ProberCardOperatorImpl implements ProberCardOperator {
     public void proberCardCreateState(String proberCardId, String lastProcess, String currentProcess, String operator) {
         proberCardOperator.proberCardCreateState(proberCardId,lastProcess,currentProcess,operator);
     }
-
     @Override
     @Caching(evict = {
             @CacheEvict(value = "ProberCardCache",key = "'getAllProberCardStatus'"),
@@ -175,5 +175,12 @@ public class ProberCardOperatorImpl implements ProberCardOperator {
     @CacheEvict(value = "ProberCardCache",key = "'getTd'")
     public boolean cleanPM(String cardid, String ownerid) {
         return proberCardOperator.cleanPM(cardid,ownerid);
+    }
+    @Override
+    @Caching(evict = {
+            @CacheEvict(value = "ProberCardCache",key = "'getAllProberCardStatus'")
+    })
+    public void addCheckProberCard(ReleaseProberCardBean bean) {
+         proberCardOperator.addCheckProberCard(bean);
     }
 }

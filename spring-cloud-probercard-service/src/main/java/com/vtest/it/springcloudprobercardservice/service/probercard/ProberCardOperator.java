@@ -18,7 +18,7 @@ public interface ProberCardOperator {
 
     public void addProberCardEX(ProberCardExtensionBean bean);
 
-    public void deleteProberCardInfo(@Param("cardId") String proberCardId);
+    public void deleteProberCardInfo(@Param("cardId") String cardId);
 
     public void proberCardCreateState(@Param("proberCardId") String proberCardId, @Param("lastProcess") String lastProcess, @Param("currentProcess") String currentProcess, @Param("op") String operator);
 
@@ -40,4 +40,6 @@ public interface ProberCardOperator {
 
 
     public boolean cleanPM(@Param("cardid") String cardid, @Param("ownerid") String ownerid);
+
+    public void addCheckProberCard(ReleaseProberCardBean bean);
 }

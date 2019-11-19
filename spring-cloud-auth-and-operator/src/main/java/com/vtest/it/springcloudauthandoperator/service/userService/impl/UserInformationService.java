@@ -26,4 +26,5 @@ public class UserInformationService implements UserDetailsService {
         HttpEntity<User> entity = new HttpEntity<>(user);
         restTemplate.postForObject("http://localhost:20300/user-service/auth/user/", entity, Integer.class);
     }
+
 }
