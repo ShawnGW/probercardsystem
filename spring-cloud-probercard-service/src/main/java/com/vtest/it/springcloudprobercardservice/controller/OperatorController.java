@@ -1,5 +1,6 @@
 package com.vtest.it.springcloudprobercardservice.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.vtest.it.springcloudprobercardservice.domain.*;
 import com.vtest.it.springcloudprobercardservice.service.probercard.ProberCardInformation;
 import com.vtest.it.springcloudprobercardservice.service.probercard.ProberCardOperator;
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 @RestController
 @RequestMapping("/operator")
+@CrossOrigin
 public class OperatorController {
 
     @Autowired
@@ -67,7 +69,7 @@ public class OperatorController {
     }
 
     @PostMapping("/ProberCard")
-    public void updateProberCard(ProberCardEntityBean bean) {
+    public void updateProberCard(@RequestBody ProberCardEntityBean bean) {
             proberCardOperator.updateProberCard(bean);
     }
     @PostMapping("/ProberCardReleaseFlag")

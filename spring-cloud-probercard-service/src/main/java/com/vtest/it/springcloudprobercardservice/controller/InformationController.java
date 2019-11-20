@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/information")
+@CrossOrigin
 public class InformationController {
     @Autowired
     private ProberCardInformation proberCardInformation;

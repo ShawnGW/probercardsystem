@@ -1,6 +1,5 @@
 package com.vtest.it.springclouduserservice.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.vtest.it.springclouduserservice.service.auth.AuthService;
 import common.domain.Role;
 import common.domain.User;

@@ -28,7 +28,7 @@ public class ProberCardInformationImpl implements ProberCardInformation {
     }
 
     @Override
-    @Cacheable(value = "ProberCardCache", key = "#methodName+'&'+#cardId")
+    @Cacheable(value = "ProberCardCache", key = "#root.methodName+'&'+#cardId")
     public ProberCardEntityBean getCard(String cardId) {
         return informationDao.getCard(cardId);
     }
@@ -54,7 +54,11 @@ public class ProberCardInformationImpl implements ProberCardInformation {
     @Override
     @Cacheable(value = "ProberCardCache",key = "#root.methodName+'&'+#proberCardId")
     public boolean getProberCardReleaseFlag(String proberCardId) {
-        return informationDao.getProberCardReleaseFlag(proberCardId);
+        try {
+            return informationDao.getProberCardReleaseFlag(proberCardId);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

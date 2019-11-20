@@ -1,5 +1,6 @@
 package com.vtest.it.springcloudauthandoperator.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.vtest.it.springcloudauthandoperator.service.userService.impl.OperatorService;
 import com.vtest.it.springcloudauthandoperator.service.userService.impl.ProbercardInfoService;
 import common.domain.*;
@@ -184,7 +185,7 @@ public class TestController {
     }
 
     @PostMapping("/ProberCard")
-    public void updateProberCard(ProberCardEntityBean bean) {
+    public void updateProberCard(@RequestBody ProberCardEntityBean bean) {
         operatorService.updateProberCard(bean);
     }
     @PostMapping("/ProberCardReleaseFlag")
